@@ -44,7 +44,9 @@ export async function getProfiles(req, res) {
 }
 
 export async function searchForProfile(req, res) {
-  const { q } = req.query.toLowerCase();
+  const query = req.query.q;
+
+  const q = query.toLowerCase();
 
   const parsedQuery = {};
 
