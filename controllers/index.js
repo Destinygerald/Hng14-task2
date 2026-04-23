@@ -7,13 +7,13 @@ const DbProfile = new ProfileRepository();
 
 export async function getProfiles(req, res) {
   const {
-    gender = undefined,
-    age_group = undefined,
-    country_id = undefined,
-    min_age = undefined,
-    max_age = undefined,
-    min_gender_probability = undefined,
-    min_country_probability = undefined,
+    gender,
+    age_group,
+    country_id,
+    min_age,
+    max_age,
+    min_gender_probability,
+    min_country_probability,
     page,
     limit,
     sort_by,
@@ -44,12 +44,15 @@ export async function getProfiles(req, res) {
     where.min_country_probability = min_country_probability;
   }
 
-  if (min_age) {
-    where.age.gte = Number(min_age);
-  }
+  if (min_age || max_age) {
+    where.age = {};
+    if (min_age) {
+      where.age.gte = Number(min_age);
+    }
 
-  if (max_age) {
-    where.age.lte = Number(max_age);
+    if (max_age) {
+      where.age.lte = Number(max_age);
+    }
   }
 
   if (min_country_probability) {
