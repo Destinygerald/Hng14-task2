@@ -11,7 +11,8 @@
     "prisma:generate": "npx prisma generate",
     "prisma:dev:deploy": "npx prisma migrate dev --name init",
     "prisma:prod:deploy": "npx prisma migrate deploy",
-    "build": "npx prisma generate"
+    "build": "npx prisma generate",
+    "postinstall": "prisma generate"
   },
   "prisma": {
     "seed": "node lib/seed.js"
