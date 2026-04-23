@@ -37,11 +37,11 @@ export async function getProfiles(req, res) {
   }
 
   if (min_gender_probability) {
-    where.min_gender_probability = min_gender_probability;
+    where.min_gender_probability = parseFloat(min_gender_probability);
   }
 
   if (min_country_probability) {
-    where.min_country_probability = min_country_probability;
+    where.min_country_probability = parseFloat(min_country_probability);
   }
 
   if (min_age || max_age) {
