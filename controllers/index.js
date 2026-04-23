@@ -1,7 +1,7 @@
 import { APIError, ExternalApiError } from "../middleware/error-handler.js";
 import { validateProfileCreate } from "../utils/validator.js";
 import { ProfileRepository } from "../repository/profile-repository.js";
-import { assignGroup, selectCountry } from "../utils/functions.js";
+import { assignGroup, capitalize, selectCountry } from "../utils/functions.js";
 
 const DbProfile = new ProfileRepository();
 
@@ -71,7 +71,7 @@ export async function searchForProfile(req, res) {
     if (q.split("from ")[1].trim().includes(" "))
       throw new APIError("Unable to interpret query", 400);
 
-    parsedQuery.country_name = q.split("from ")[1];
+    parsedQuery.country_name = capitalize(q.split("from ")[1]);
   }
 
   if (q.includes("above")) {
