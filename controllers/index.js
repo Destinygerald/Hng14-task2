@@ -44,7 +44,7 @@ export async function getProfiles(req, res) {
 }
 
 export async function searchForProfile(req, res) {
-  const { q } = req.query;
+  const { q } = req.query.toLowerCase();
 
   const parsedQuery = {};
 
@@ -63,11 +63,12 @@ export async function searchForProfile(req, res) {
     parsedQuery.gender = "male";
   } else if (q.split(" ").includes("male") && q.includes("female")) {
     parsedQuery.gender = undefined;
-  } else {
-    parsedQuery.gender = undefined;
   }
 
   if (q.includes("from")) {
+    if (q.split("from ")[1].trim().includes(" "))
+      throw new APIError("Unable to interpret query", 400);
+
     parsedQuery.country = q.split("from ")[1];
   }
 
@@ -87,8 +88,10 @@ export async function searchForProfile(req, res) {
     parsedQuery.age_group = known_age_group[2];
   } else if (q.includes(known_age_group[3])) {
     parsedQuery.age_group = known_age_group[3];
-  } else {
-    parsedQuery.age_group = undefined;
+  }
+
+  if (Object.keys(parsedQuery).length === 0) {
+    throw new APIError("Unable to interpret query", 400);
   }
 
   const response = await DbProfile.getMany(parsedQuery);
