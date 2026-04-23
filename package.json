@@ -10,7 +10,8 @@
     "start": "node ./index.js",
     "prisma:generate": "npx prisma generate",
     "prisma:dev:deploy": "npx prisma migrate dev --name init",
-    "prisma:prod:deploy": "npx prisma migrate deploy"
+    "prisma:prod:deploy": "npx prisma migrate deploy",
+    "build": "npx prisma generate"
   },
   "prisma": {
     "seed": "node lib/seed.js"
