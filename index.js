@@ -1,7 +1,6 @@
 import http from "http";
 import dotenv from "dotenv";
 import { app } from "./index_server.js";
-import { DbSeeding } from "./config/db.js";
 dotenv.config();
 
 const PORT = process.env.PORT || 8000;
@@ -14,6 +13,5 @@ process.on("unhandledRejection", (reason, promise) => {
 });
 
 server.listen(PORT, async () => {
-  await DbSeeding();
   console.log("Listening on PORT " + PORT);
 });
