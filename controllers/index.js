@@ -58,14 +58,6 @@ export async function getProfiles(req, res) {
     }
   }
 
-  if (min_country_probability) {
-    where.min_country_probability = parseFloat(min_country_probability);
-  }
-
-  if (min_country_probability) {
-    where.min_country_probability = parseFloat(min_country_probability);
-  }
-
   const response = await DbProfile.getMany({
     where,
     page,
