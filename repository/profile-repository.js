@@ -33,7 +33,7 @@ export class ProfileRepository {
         where: {
           gender: query.gender,
           age_group: query.age_group,
-          country_id: query.country_id,
+          country_name: query.country_name,
           age: {
             gt: query.min_age,
             lt: query.max_age,
@@ -53,7 +53,7 @@ export class ProfileRepository {
         where: {
           gender: query.gender,
           age_group: query.age_group,
-          country_id: query.country_id,
+          country_name: query.country_name,
           age: {
             gt: query.min_age,
             lt: query.max_age,
