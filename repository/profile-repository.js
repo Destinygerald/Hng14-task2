@@ -24,7 +24,7 @@ export class ProfileRepository {
 
   async getMany(query) {
     const page = query.page || 1;
-    const pageSize = query.limit <= 50 && query.limit >= 10 ? query.limit : 10;
+    const pageSize = query.limit <= 50 && query.limit >= 1 ? query.limit : 10;
 
     const skip = (page - 1) * pageSize;
 
