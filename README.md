@@ -7,7 +7,7 @@ A backend service built for **Insighta Labs** using **Express.js** that enables 
 ## 🚀 Live API
 
 **Base URL:**  
-https://hng14-task2-taupe.vercel.app/
+https://yourapp.domain.app
 
 ---
 

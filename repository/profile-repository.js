@@ -43,10 +43,10 @@ export class ProfileRepository {
             lt: query.max_gender_probability,
           },
         },
-        take: pageSize,
-        skip: skip,
+        take: parseInt(pageSize),
+        skip: parseInt(skip),
         orderBy: {
-          [query.sort_by || "created_at"]: query.order_by,
+          [query.sort_by || "created_at"]: query.order,
         },
       }),
       this.prisma.profile.count({

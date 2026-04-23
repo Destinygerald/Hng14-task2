@@ -17,7 +17,7 @@ export async function getProfiles(req, res) {
     page,
     limit,
     sort_by,
-    order_by,
+    order,
   } = req.query;
 
   const response = await DbProfile.getMany({
@@ -31,7 +31,7 @@ export async function getProfiles(req, res) {
     page,
     limit,
     sort_by,
-    order_by,
+    order,
   });
 
   return res.status(200).json({
