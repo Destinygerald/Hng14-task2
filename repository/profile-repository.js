@@ -35,14 +35,14 @@ export class ProfileRepository {
           age_group: query.age_group,
           country_name: query.country_name,
           age: {
-            gt: query.min_age,
-            lt: query.max_age,
+            gte: query.min_age,
+            lte: query.max_age,
           },
           gender_probability: {
-            gt: query.min_gender_probability,
+            gte: query.min_gender_probability,
           },
           country_probability: {
-            gt: query.min_country_probability,
+            gte: query.min_country_probability,
           },
         },
         take: parseInt(pageSize),
@@ -57,14 +57,14 @@ export class ProfileRepository {
           age_group: query.age_group,
           country_name: query.country_name,
           age: {
-            gt: query.min_age,
-            lt: query.max_age,
+            gte: query.min_age,
+            lte: query.max_age,
           },
           gender_probability: {
-            gt: query.min_gender_probability,
+            gte: query.min_gender_probability,
           },
           country_probability: {
-            gt: query.min_country_probability,
+            gte: query.min_country_probability,
           },
         },
       }),
