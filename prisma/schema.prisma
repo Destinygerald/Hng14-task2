@@ -1,0 +1,39 @@
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+generator client {
+    provider = "prisma-client-js"
+    output   = "../generated/prisma"
+}
+
+enum Gender {
+  male
+  female
+}
+
+enum AgeGroup {
+  child
+  teenager
+  adult
+  senior
+}
+
+model Profile {
+  id                   String   @id @default(uuid()) @db.Uuid
+  name                 String   @unique
+  gender               Gender
+  gender_probability   Float
+  age                  Int
+  age_group            AgeGroup
+  country_id           String   @db.Char(2)
+  country_name         String
+  country_probability  Float
+  created_at           DateTime @default(now())
+
+  @@index([country_id])
+  @@index([age])
+  @@index([gender])
+  @@index([age_group])
+}
