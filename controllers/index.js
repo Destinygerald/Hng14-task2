@@ -20,14 +20,48 @@ export async function getProfiles(req, res) {
     order,
   } = req.query;
 
+  const known_age_group = ["child", "teenager", "adult", "elder"];
+
+  const where = {};
+
+  if (gender) {
+    where.gender = gender;
+  }
+
+  if (age_group && known_age_group.includes(age_group)) {
+    where.age_group = age_group;
+  }
+
+  if (country_id != null || country_id != undefined) {
+    where.country_id = country_id;
+  }
+
+  if (min_gender_probability) {
+    where.min_gender_probability = min_gender_probability;
+  }
+
+  if (min_country_probability) {
+    where.min_country_probability = min_country_probability;
+  }
+
+  if (min_age) {
+    where.age.gte = Number(min_age);
+  }
+
+  if (max_age) {
+    where.age.lte = Number(max_age);
+  }
+
+  if (min_country_probability) {
+    parsedQuery.min_country_probability = parseFloat(min_country_probability);
+  }
+
+  if (min_country_probability) {
+    where.min_country_probability = parseFloat(min_country_probability);
+  }
+
   const response = await DbProfile.getMany({
-    gender: gender,
-    age_group,
-    country_id,
-    min_age: parseInt(min_age) || undefined,
-    max_age: parseInt(max_age) || undefined,
-    min_gender_probability: parseFloat(min_gender_probability) || undefined,
-    min_country_probability: parseFloat(min_country_probability) || undefined,
+    where,
     page,
     limit,
     sort_by,
@@ -36,8 +70,8 @@ export async function getProfiles(req, res) {
 
   return res.status(200).json({
     status: "success",
-    page: response.page,
-    limit: response.limit,
+    page: parseInt(response.page),
+    limit: parseInt(response.limit),
     total: 2026,
     data: response.data,
   });
