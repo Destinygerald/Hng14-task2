@@ -24,7 +24,7 @@ export class ProfileRepository {
 
   async getMany(query) {
     const page = query.page || 1;
-    const pageSize = query.limit <= 50 && query.limit >= 1 ? query.limit : 10;
+    const pageSize = query.limit <= 50 && query.limit >= 10 ? query.limit : 10;
 
     const skip = (page - 1) * pageSize;
 
@@ -40,7 +40,9 @@ export class ProfileRepository {
           },
           gender_probability: {
             gt: query.min_gender_probability,
-            lt: query.max_gender_probability,
+          },
+          country_probability: {
+            gt: query.min_country_probability,
           },
         },
         take: parseInt(pageSize),
@@ -60,7 +62,9 @@ export class ProfileRepository {
           },
           gender_probability: {
             gt: query.min_gender_probability,
-            lt: query.max_gender_probability,
+          },
+          country_probability: {
+            gt: query.min_country_probability,
           },
         },
       }),
